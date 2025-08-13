@@ -1,0 +1,41 @@
+services:
+  # Web Service
+  - type: web
+    name: mmsu-prior-art-tool
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn wsgi:application"
+    plan: free
+    healthCheckPath: /api/status
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mmsu-prior-art-db
+          property: connectionString
+      - key: MAIL_SERVER
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USE_TLS
+        value: true
+      - key: MAIL_USERNAME
+        value: artbellsonmamuri@gmail.com
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: PERPLEXITY_API_KEY
+        sync: false
+      - key: WEASYPRINT_BASE_URL
+        value: https://mmsu-prior-art-tool.onrender.com
+
+databases:
+  # PostgreSQL Database
+  - name: mmsu-prior-art-db
+    databaseName: mmsu_prior_art
+    plan: free
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: Allow all connections
