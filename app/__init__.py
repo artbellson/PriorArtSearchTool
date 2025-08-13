@@ -12,7 +12,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_wtf.csrf import CSRFProtect
-from config import Config
+from config import config
 
 # Initialize extensions
 db = SQLAlchemy()
@@ -21,10 +21,16 @@ login = LoginManager()
 mail = Mail()
 csrf = CSRFProtect()
 
-def create_app(config_class=Config):
+def create_app(config_name=None):
     """Application factory pattern"""
     app = Flask(__name__)
-    app.config.from_object(config_class)
+    
+    # Determine config name
+    if config_name is None:
+        config_name = os.environ.get('FLASK_ENV') or 'production'
+    
+    # Load configuration from config dictionary
+    app.config.from_object(config[config_name])
 
     # Initialize extensions
     db.init_app(app)
@@ -32,7 +38,7 @@ def create_app(config_class=Config):
     login.init_app(app)
     mail.init_app(app)
     csrf.init_app(app)
-
+    
     # Configure login manager
     login.login_view = 'auth.login'
     login.login_message = 'Please log in to access this page.'
