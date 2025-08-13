@@ -44,3 +44,6 @@ flake8==7.1.0
 # Optional: Redis for session management (if needed)
 # redis==5.0.8
 # Flask-Session==0.8.0
+
+PyJWT==2.8
+cryptography==42
