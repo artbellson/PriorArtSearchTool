@@ -1,7 +1,7 @@
 # MMSU Prior Art Search Tool Requirements
 # Core Flask Dependencies
 Flask==3.1.0
-Flask-SQLAlchemy==3.1.2
+Flask-SQLAlchemy==3.1.1
 Flask-Migrate==4.0.7
 Flask-Login==0.6.3
 Flask-Mail==0.10.0
