@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Disclaimer - MMSU Prior Art Search Tool{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-warning text-dark text-center py-4">
+                    <h3 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Technology Disclosure Agreement
+                    </h3>
+                </div>
+                <div class="card-body p-5">
+                    <div class="alert alert-info mb-4">
+                        <h5 class="alert-heading">
+                            <i class="fas fa-info-circle me-2"></i>Important Notice
+                        </h5>
+                        <p class="mb-0">
+                            Before proceeding with technology submission, please read and accept the following terms and conditions.
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5 class="text-mmsu-green">Confidentiality and Data Processing Agreement</h5>
+                        <p>By accepting this disclaimer, you acknowledge and agree to the following:</p>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Technology Disclosure:</strong> You agree to disclose your technology information for the purpose of prior art search and patentability analysis.
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Confidentiality:</strong> All disclosed data will be kept strictly confidential and will not be disclosed to any third parties without your explicit consent.
+                            </li>
+                            <li class="list-group-item">
+                                <strong>AI Processing:</strong> Your technology information will be processed by artificial intelligence systems for analysis purposes only.
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Data Security:</strong> We implement enterprise-grade security measures to protect your intellectual property.
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Use Limitation:</strong> The information you provide will be used solely for generating prior art search reports and patentability assessments.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <h6 class="alert-heading">Legal Disclaimer</h6>
+                        <p class="mb-0 small">
+                            This analysis is for informational purposes only and does not constitute legal advice. 
+                            You should consult with a qualified Patent Agent or Patent Attorney for professional 
+                            patentability opinions and patent filing decisions.
+                        </p>
+                    </div>
+
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+
+                        <div class="form-check mb-4">
+                            {{ form.accept_disclaimer(class="form-check-input", id="acceptDisclaimer") }}
+                            <label class="form-check-label" for="acceptDisclaimer">
+                                <strong>I have read, understood, and agree to the above terms and conditions.</strong>
+                            </label>
+                            {% for error in form.accept_disclaimer.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-mmsu btn-lg") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

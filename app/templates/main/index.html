@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}MMSU Prior Art Search Tool - Home{% endblock %}
+
+{% block content %}
+<div class="hero-section bg-mmsu-green text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">AI-Powered Prior Art Search</h1>
+                <p class="lead mb-4">
+                    Discover existing technologies and assess patentability with our advanced AI analysis system. 
+                    Designed specifically for MMSU researchers, faculty, and students.
+                </p>
+                <div class="d-flex gap-3">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('main.submit_technology') }}" class="btn btn-warning btn-lg">
+                            <i class="fas fa-upload me-2"></i>Submit Technology
+                        </a>
+                        <a href="{{ url_for('main.dashboard') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-warning btn-lg">
+                            <i class="fas fa-user-plus me-2"></i>Get Started
+                        </a>
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <i class="fas fa-search display-1 opacity-50"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <!-- Features Section -->
+    <div class="row mb-5">
+        <div class="col-12 text-center mb-5">
+            <h2 class="text-mmsu-green fw-bold">Why Choose Our Platform?</h2>
+            <p class="lead text-muted">Advanced AI technology meets academic excellence</p>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="bg-mmsu-green text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-brain fa-lg"></i>
+                    </div>
+                    <h5 class="card-title text-mmsu-green">AI-Powered Analysis</h5>
+                    <p class="card-text">
+                        Advanced AI algorithms analyze your technology against millions of prior art documents 
+                        to provide comprehensive patentability assessment.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="bg-warning text-dark rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-file-pdf fa-lg"></i>
+                    </div>
+                    <h5 class="card-title text-mmsu-green">Professional Reports</h5>
+                    <p class="card-text">
+                        Generate detailed PDF reports with MMSU branding, confidentiality notes, 
+                        and comprehensive analysis results ready for patent applications.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-shield-alt fa-lg"></i>
+                    </div>
+                    <h5 class="card-title text-mmsu-green">Secure & Confidential</h5>
+                    <p class="card-text">
+                        Your technology information is protected with enterprise-grade security 
+                        and handled with strict confidentiality agreements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
